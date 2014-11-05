@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+encoding//src/main/scala/net/atos/mts/akka/persistence/rocksdb/RocksDBSyncWriteJournal.scala=UTF-8
