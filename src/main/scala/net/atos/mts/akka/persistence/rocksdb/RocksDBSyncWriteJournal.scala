@@ -63,8 +63,8 @@ class RocksDBSyncWriteJournal extends SyncWriteJournal with ActorLogging {
 	val rocksdbOptions = new Options().setCreateIfMissing(true)
 	def rocksdbReadOptions = new ReadOptions().setVerifyChecksums(config.getBoolean("checksum"))
 	val rocksdbWriteOptions = new WriteOptions().setSync(config.getBoolean("fsync"))
-	val rocksdbDir = new File(config.getString("dir"))
-	val rocksdb = RocksDB.open(rocksdbOptions, rocksdbDir.toString)
+	val rocksdbDir = config.getString("dir")
+	val rocksdb = RocksDB.open(rocksdbOptions, rocksdbDir)
 	val serialization = SerializationExtension(context.system)
 	
 	private lazy val replayDispatcherId = config.getString("replay-dispatcher")
@@ -265,6 +265,7 @@ class RocksDBSyncWriteJournal extends SyncWriteJournal with ActorLogging {
     }
 	
 	override def preStart() {
+	  log.debug("rocksdb persistence starts")
       super.preStart()
     }
 
@@ -272,6 +273,7 @@ class RocksDBSyncWriteJournal extends SyncWriteJournal with ActorLogging {
 	  rocksdbWriteOptions.dispose()
 	  rocksdbOptions.dispose()
       rocksdb.close()
+      log.debug("rocksdb persistence is stopped")
       super.postStop()
     }
 }
