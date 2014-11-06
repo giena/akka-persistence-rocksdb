@@ -12,7 +12,7 @@ libraryDependencies ++= Seq(
 "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.4" % "compile",
 "com.typesafe.akka" %% "akka-testkit" % "2.3.4" % "test",
 "com.typesafe.akka" %% "akka-persistence-tck-experimental" % "2.3.6" % "test",
-"org.rocksdb" % "rocksdbjni" % "3.5.0" % "compile,test"
+"org.rocksdb" % "rocksdbjni" % "3.6.2" % "compile,test"
  )
 
  resolvers ++= Seq(
