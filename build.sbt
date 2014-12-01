@@ -1,4 +1,4 @@
-name := "Akka Persistence Plugin for RocksDB"
+name := "AkkaPersistencePlugin4RocksDB"
 
 version := "1.0"
 
@@ -8,9 +8,11 @@ fork in Test := true
 
 fork in run := true
 
+test in assembly := {}
+
 libraryDependencies ++= Seq(
-"com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.4" % "compile",
-"com.typesafe.akka" %% "akka-testkit" % "2.3.4" % "test",
+"com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.6" % "compile",
+"com.typesafe.akka" %% "akka-testkit" % "2.3.6" % "test",
 "com.typesafe.akka" %% "akka-persistence-tck-experimental" % "2.3.6" % "test",
 "org.rocksdb" % "rocksdbjni" % "3.6.2" % "compile,test"
  )

@@ -16,6 +16,7 @@ import akka.persistence.PersistentRepr
 import akka.persistence.journal.SyncWriteJournal
 import akka.serialization.SerializationExtension
 import scala.concurrent.Future
+import org.rocksdb.CompressionType
 
 /**
  * RocksDB key.
@@ -60,7 +61,7 @@ class RocksDBSyncWriteJournal extends SyncWriteJournal with ActorLogging {
     val configPath = "akka.persistence.journal.rocksdb.store"
     val config = context.system.settings.config.getConfig(configPath)
     
-	val rocksdbOptions = new Options().setCreateIfMissing(true)
+	val rocksdbOptions = new Options().setCreateIfMissing(true).setCompressionType(CompressionType.ZLIB_COMPRESSION)
 	def rocksdbReadOptions = new ReadOptions().setVerifyChecksums(config.getBoolean("checksum"))
 	val rocksdbWriteOptions = new WriteOptions().setSync(config.getBoolean("fsync"))
 	val rocksdbDir = config.getString("dir")

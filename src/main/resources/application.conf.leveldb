@@ -1,0 +1,20 @@
+akka {
+  loglevel = "INFO"
+  persistence {
+    benchmark {
+  		timeout = 5
+  		numMessages = 10
+  		sizeMessage = 1024
+  	}
+    journal.plugin = "akka.persistence.journal.leveldb"
+    journal.leveldb {
+        class = "akka.persistence.journal.leveldb.LeveldbJournal"
+                dir = "leveldb-journal"
+                fsync = false
+                checksum = true
+                replay-dispatcher = "akka.persistence.dispatchers.default-replay-dispatcher"
+    }
+    snapshot-store.local.dir = "lsnapshots"
+  }
+}
+

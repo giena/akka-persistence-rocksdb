@@ -3,7 +3,7 @@ akka {
   persistence {
     benchmark {
   		timeout = 5
-  		numMessages = 100000
+  		numMessages = 10
   		sizeMessage = 1024
   	}
     journal.plugin = "akka.persistence.journal.rocksdb"
